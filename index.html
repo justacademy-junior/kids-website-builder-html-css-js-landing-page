@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Can Kids Create Their Own Educational Website? HTML, CSS and JavaScript</title>
+<meta name="description" content="A fun, hands-on guide showing how kids can build their own educational website with HTML, CSS and JavaScript in four weeks. Try the live builder, take the quiz and start free.">
+<meta property="og:title" content="Kids Can Build Websites! HTML, CSS and JavaScript">
+<meta property="og:description" content="Try a live website builder and follow a simple 4-week plan to create an educational website.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--grape:#2D1B69;--violet:#7B4DFF;--sun:#FFD23F;--mint:#2EC4B6;--coral:#FF5D73;--sky:#F1ECFF;--ink:#241A4A;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--sky);color:var(--ink);line-height:1.65;font-size:17px;overflow-x:hidden}
+h1,h2,h3{font-family:'Baloo 2',cursive,sans-serif;line-height:1.1;color:var(--grape)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;border:3px solid var(--grape);font-weight:700;text-decoration:none;font-family:inherit;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 var(--grape);transition:transform .15s,box-shadow .15s;background:var(--white);color:var(--grape)}
+.btn:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--grape)}
+.btn.sun{background:var(--sun)}.btn.coral{background:var(--coral);color:var(--white)}
+header{position:sticky;top:0;z-index:20;background:var(--grape);color:var(--white);border-bottom:5px solid var(--sun)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.3rem;text-decoration:none;color:var(--white)}
+.logo span{background:var(--sun);color:var(--grape);padding:0 9px;border-radius:10px;margin-right:6px}
+nav{display:flex;align-items:center;gap:22px}
+nav a{text-decoration:none;font-weight:700}nav a:hover{color:var(--sun)}
+nav .btn{padding:8px 18px;box-shadow:0 3px 0 #0003;border-color:var(--sun);color:var(--grape)}
+@media(max-width:760px){nav a:not(.btn){display:none}}
+.hero{padding:56px 0 70px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:800}
+.hero h1 mark{background:var(--sun);padding:0 12px;border-radius:14px;display:inline-block;transform:rotate(-2deg)}
+.hero p.lead{font-size:1.2rem;margin:20px 0 28px;max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:16px}
+.blob{position:absolute;border-radius:50%;z-index:-1;opacity:.5}
+.b1{width:260px;height:260px;background:var(--mint);top:-60px;right:-60px}
+.b2{width:160px;height:160px;background:var(--coral);bottom:10px;left:-50px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.browser{background:var(--white);border:4px solid var(--grape);border-radius:22px;box-shadow:10px 10px 0 var(--grape);overflow:hidden;transform:rotate(1.5deg)}
+.dots{background:var(--grape);padding:10px 14px;display:flex;gap:7px;align-items:center;color:var(--white);font-size:.8rem}
+.dots i{width:12px;height:12px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:var(--coral)}.dots i:nth-child(2){background:var(--sun)}.dots i:nth-child(3){background:var(--mint)}
+.dots span{margin-left:8px;opacity:.8}
+.stage{--c:#7B4DFF;padding:26px 20px;text-align:center;border-bottom:3px dashed #d9cfff}
+.stage .emo{font-size:3.6rem;display:block;transition:transform .3s}
+.stage.bounce .emo{animation:hop .8s infinite}
+@keyframes hop{50%{transform:translateY(-14px)}}
+.stage h2{color:var(--c);font-size:2rem;overflow-wrap:anywhere}
+.stage p{font-size:.95rem;margin:4px 0 12px}
+.stage button{background:var(--c);color:#fff;border:0;padding:10px 20px;border-radius:999px;font:700 .95rem Nunito,sans-serif;cursor:pointer}
+.tools{padding:16px 18px;display:grid;gap:12px;background:#faf8ff}
+.tools label{font-weight:700;font-size:.9rem;display:block}
+.tools input[type=text]{width:100%;padding:9px 12px;border:3px solid var(--grape);border-radius:12px;font:inherit}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sw,.em{width:38px;height:38px;border-radius:50%;border:3px solid var(--grape);cursor:pointer;font-size:1.2rem;background:#fff;line-height:1}
+.sw[aria-pressed=true],.em[aria-pressed=true]{box-shadow:0 0 0 4px var(--sun)}
+.chk{display:flex;gap:8px;align-items:center;font-weight:700;font-size:.9rem}
+pre{background:var(--grape);color:#d9fff8;padding:14px 16px;font:600 .85rem/1.5 ui-monospace,Menlo,monospace;overflow-x:auto}
+section{padding:76px 0}
+.head{text-align:center;max-width:640px;margin:0 auto 40px}
+.head h2{font-size:clamp(2rem,4.5vw,3rem)}.head p{margin-top:12px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px}
+.card{background:var(--white);border:4px solid var(--grape);border-radius:26px;padding:28px;box-shadow:7px 7px 0 var(--grape);display:flex;flex-direction:column;gap:10px}
+.card:nth-child(1){transform:rotate(-1.2deg)}.card:nth-child(3){transform:rotate(1.2deg)}
+.card .ic{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font-size:2rem;border:3px solid var(--grape)}
+.card h3{font-size:1.7rem}.card .btn{margin-top:auto;align-self:flex-start;padding:10px 20px;font-size:.95rem}
+.house{background:var(--white)}
+.plan{background:var(--grape);color:var(--white)}
+.plan h2,.plan .head p{color:var(--white)}
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.tab{padding:10px 22px;border-radius:999px;border:3px solid var(--sun);background:transparent;color:var(--white);font:700 1rem Nunito,sans-serif;cursor:pointer}
+.tab[aria-selected=true]{background:var(--sun);color:var(--grape)}
+.panel{background:var(--white);color:var(--ink);border-radius:26px;padding:30px;max-width:760px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.panel .big{font-size:4rem}.panel h3{font-size:1.8rem}
+@media(max-width:560px){.panel{grid-template-columns:1fr;text-align:center}}
+.quiz{max-width:680px;margin:0 auto;background:var(--sun);border:4px solid var(--grape);border-radius:28px;padding:32px;box-shadow:8px 8px 0 var(--grape);text-align:center}
+.quiz h3{font-size:1.7rem;margin-bottom:18px}
+.opts{display:grid;gap:12px}
+.opts .btn{width:100%}
+#msg{margin-top:18px;font-weight:800;min-height:1.7em;font-size:1.1rem}
+.safe{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.safe div{background:var(--white);border-radius:20px;padding:20px;border:3px solid var(--mint)}
+.safe b{display:block;font-family:'Baloo 2',sans-serif;font-size:1.25rem;color:var(--grape)}
+.read{background:var(--mint);border-radius:32px;border:4px solid var(--grape);padding:36px;display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:8px 8px 0 var(--grape)}
+.read h2{font-size:2rem;max-width:20em}
+.final{text-align:center;background:var(--coral);color:var(--white);padding:80px 0}
+.final h2{color:var(--white);font-size:clamp(2rem,5vw,3.4rem)}
+.final p{margin:14px auto 28px;max-width:34em}
+.final .cta{justify-content:center}
+footer{background:var(--grape);color:#d8ceff;padding:48px 0 26px}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+@media(max-width:760px){.fg{grid-template-columns:1fr}}
+footer h4{color:var(--sun);font-family:'Baloo 2',sans-serif;font-size:1.2rem;margin-bottom:8px}
+footer ul{list-style:none}footer li{margin:6px 0}
+footer a{text-decoration:none}footer a:hover{color:var(--sun);text-decoration:underline}
+.copy{border-top:2px dashed #ffffff44;margin-top:30px;padding-top:18px;font-size:.9rem;text-align:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap bar">
+<a class="logo" href="https://justacademyjunior.com/programs"><span>JA</span>Junior</a>
+<nav aria-label="Main">
+<a href="#build">Try it</a>
+<a href="#plan">4-week plan</a>
+<a href="https://justacademyjunior.com/blog/how-can-kids-create-their-own-educational-website-using-html-css-and-javascript">Blog</a>
+<a class="btn sun" href="https://justacademyjunior.com/free-demo">Free demo</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="hero" id="build">
+<div class="blob b1"></div><div class="blob b2"></div>
+<div class="wrap">
+<div>
+<h1>Your kid can build a <mark>real website</mark> this month.</h1>
+<p class="lead">Pick a topic they love, then use HTML, CSS and JavaScript to turn it into a page with colours, facts and a quiz. Try the builder on the right. It&rsquo;s the same idea real developers use, just smaller.</p>
+<div class="cta">
+<a class="btn sun" href="https://justacademyjunior.com/free-demo">Book a free demo</a>
+<a class="btn" href="https://justacademyjunior.com/courses/web-development">See the web development course</a>
+</div>
+</div>
+
+<div class="browser" aria-label="Live website builder">
+<div class="dots"><i></i><i></i><i></i><span>my-first-website.html</span></div>
+<div class="stage" id="stage">
+<span class="emo" id="emo">🪐</span>
+<h2 id="ttl">Amazing Planets</h2>
+<p>Hi! I made this page myself.</p>
+<button id="fact" type="button">Show a fun fact</button>
+<p id="factOut" aria-live="polite" style="margin-top:12px;font-weight:700"></p>
+</div>
+<div class="tools">
+<div><label for="t">1. Type a title (HTML)</label><input id="t" type="text" maxlength="22" value="Amazing Planets"></div>
+<div><label>2. Pick a colour (CSS)</label>
+<div class="row" id="sws">
+<button class="sw" style="background:#7B4DFF" data-c="#7B4DFF" aria-pressed="true" aria-label="Purple"></button>
+<button class="sw" style="background:#FF5D73" data-c="#FF5D73" aria-pressed="false" aria-label="Coral"></button>
+<button class="sw" style="background:#14A89B" data-c="#14A89B" aria-pressed="false" aria-label="Green"></button>
+<button class="sw" style="background:#F59E0B" data-c="#F59E0B" aria-pressed="false" aria-label="Orange"></button>
+</div></div>
+<div><label>3. Choose a mascot</label>
+<div class="row" id="ems">
+<button class="em" aria-pressed="true" aria-label="Planet">🪐</button>
+<button class="em" aria-pressed="false" aria-label="Dinosaur">🦖</button>
+<button class="em" aria-pressed="false" aria-label="Rocket">🚀</button>
+<button class="em" aria-pressed="false" aria-label="Frog">🐸</button>
+</div></div>
+<label class="chk"><input type="checkbox" id="bn"> Make it bounce (JavaScript)</label>
+</div>
+<pre id="code" aria-label="Generated code"></pre>
+</div>
+</div>
+</section>
+
+<section class="house">
+<div class="wrap">
+<div class="head">
+<h2>Three languages. One tiny house.</h2>
+<p>Every website is built from three ingredients. Think of a house, and it all clicks.</p>
+</div>
+<div class="grid3">
+<article class="card"><div class="ic" style="background:var(--coral)">🧱</div><h3>HTML is the walls</h3><p>It decides what is on the page: headings, pictures, paragraphs and buttons. This is where every first website begins.</p><a class="btn" href="https://www.justacademy.co/course-detail/mumbai/html-training-in-mumbai">Explore HTML training</a></article>
+<article class="card"><div class="ic" style="background:var(--mint)">🎨</div><h3>CSS is the paint</h3><p>Colours, fonts, spacing and rounded boxes. One small rule can change the mood of the entire page.</p><a class="btn" href="https://www.justacademy.co/course-detail/mumbai/css-training-in-mumbai">Explore CSS training</a></article>
+<article class="card"><div class="ic" style="background:var(--sun)">⚡</div><h3>JavaScript is the power</h3><p>Flip the switch and the page reacts. Quizzes, score counters and fun-fact buttons all come from here.</p><a class="btn" href="https://www.justacademy.co/course-detail/mumbai/javascript-training-in-mumbai">Explore JavaScript training</a></article>
+</div>
+</div>
+</section>
+
+<section class="plan" id="plan">
+<div class="wrap">
+<div class="head"><h2>Four weeks, one finished website</h2><p>An hour or two a week is plenty. Tap a week to see what your child builds.</p></div>
+<div class="tabs" role="tablist" aria-label="Weekly plan">
+<button class="tab" role="tab" aria-selected="true">Week 1</button>
+<button class="tab" role="tab" aria-selected="false">Week 2</button>
+<button class="tab" role="tab" aria-selected="false">Week 3</button>
+<button class="tab" role="tab" aria-selected="false">Week 4</button>
+</div>
+<div class="panel" role="tabpanel"><div class="big" id="pi">🧱</div><div><h3 id="pt">HTML basics</h3><p id="pp">Headings, paragraphs, images and links. By Sunday there is a one-page site about a favourite topic.</p></div></div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="head"><h2>Quick quiz: which one is the electricity?</h2><p>Remember the house? Let&rsquo;s see if it stuck.</p></div>
+<div class="quiz">
+<h3>Which language makes a button actually do something?</h3>
+<div class="opts">
+<button class="btn" data-a="0">HTML</button>
+<button class="btn" data-a="0">CSS</button>
+<button class="btn" data-a="1">JavaScript</button>
+</div>
+<p id="msg" aria-live="polite"></p>
+</div>
+</div>
+</section>
+
+<section style="padding-top:0">
+<div class="wrap">
+<div class="head"><h2>Safe, friendly and parent approved</h2></div>
+<div class="safe">
+<div><b>Keep details private</b>No full name, address, school or phone number on the site.</div>
+<div><b>Use safe images</b>Own drawings, or free images from trusted places.</div>
+<div><b>Stay nearby</b>Sit with younger kids while they set up and publish.</div>
+<div><b>Be kind online</b>Anyone can see a public page, so every word stays respectful.</div>
+</div>
+</div>
+</section>
+
+<section style="padding-top:0">
+<div class="wrap">
+<div class="read">
+<h2>Want the full step-by-step guide for parents?</h2>
+<a class="btn sun" href="https://justacademyjunior.com/blog/how-can-kids-create-their-own-educational-website-using-html-css-and-javascript">Read the blog guide</a>
+</div>
+</div>
+</section>
+
+<section class="final">
+<div class="wrap">
+<h2>Ready for their first &ldquo;I made this!&rdquo; moment?</h2>
+<p>Start with a free demo class, look through our programs, or talk to the team. No pressure, just a friendly first step.</p>
+<div class="cta">
+<a class="btn sun" href="https://justacademyjunior.com/free-demo">Book a free demo</a>
+<a class="btn" href="https://justacademyjunior.com/programs">Browse programs</a>
+<a class="btn" href="https://justacademyjunior.com/contact">Contact us</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="fg">
+<div><h4>JustAcademy Junior</h4><p>Project-based coding for kids. Build, break, fix and share, one small website at a time.</p></div>
+<div><h4>Explore</h4><ul>
+<li><a href="https://justacademyjunior.com/courses/web-development">Web development course</a></li>
+<li><a href="https://justacademyjunior.com/programs">Programs</a></li>
+<li><a href="https://justacademyjunior.com/free-demo">Free demo</a></li>
+<li><a href="https://justacademyjunior.com/contact">Contact</a></li>
+<li><a href="https://justacademyjunior.com/blog/how-can-kids-create-their-own-educational-website-using-html-css-and-javascript">Read the blog</a></li>
+</ul></div>
+<div><h4>Go deeper</h4><ul>
+<li><a href="https://www.justacademy.co/course-detail/mumbai/html-training-in-mumbai">HTML training</a></li>
+<li><a href="https://www.justacademy.co/course-detail/mumbai/css-training-in-mumbai">CSS training</a></li>
+<li><a href="https://www.justacademy.co/course-detail/mumbai/javascript-training-in-mumbai">JavaScript training</a></li>
+</ul></div>
+</div>
+<p class="copy">&copy; 2026 JustAcademy Junior. Made with HTML, CSS and a little JavaScript.</p>
+</div>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let col='#7B4DFF',emo='🪐';
+function draw(){
+  const t=$('#t').value.trim()||'My Website';
+  $('#ttl').textContent=t;$('#emo').textContent=emo;
+  $('#stage').style.setProperty('--c',col);
+  $('#stage').classList.toggle('bounce',$('#bn').checked);
+  $('#code').textContent='<h1>'+t+'</h1>\n\nh1 { color: '+col+'; }\n\nbutton.onclick = showFact;'+($('#bn').checked?'\nmascot.classList.add("bounce");':'');
+}
+$('#t').addEventListener('input',draw);$('#bn').addEventListener('change',draw);
+$$('.sw').forEach(b=>b.onclick=()=>{col=b.dataset.c;$$('.sw').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+$$('.em').forEach(b=>b.onclick=()=>{emo=b.textContent;$$('.em').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+const facts=['A day on Venus is longer than its year.','Octopuses have three hearts.','Honey never spoils.','The first website went live in 1991.','Bananas are berries, but strawberries are not.'];
+let fi=0;$('#fact').onclick=()=>{$('#factOut').textContent=facts[fi++%facts.length]};
+draw();
+
+const wk=[['🧱','HTML basics','Headings, paragraphs, images and links. By Sunday there is a one-page site about a favourite topic.'],['🎨','CSS styling','Colours, fonts, spacing and rounded boxes. The plain page becomes something that looks like theirs.'],['⚡','JavaScript basics','A button that shows a message, then a small quiz that says well done or try again.'],['🚀','Polish and publish','Fix bugs, add one more page, go live on free hosting and send the link to family.']];
+$$('.tab').forEach((b,i)=>b.onclick=()=>{$$('.tab').forEach(x=>x.setAttribute('aria-selected',x===b));$('#pi').textContent=wk[i][0];$('#pt').textContent=wk[i][1];$('#pp').textContent=wk[i][2]});
+
+$$('.opts .btn').forEach(b=>b.onclick=()=>{
+  const ok=b.dataset.a==='1',m=$('#msg');
+  m.textContent=ok?'Correct! JavaScript is the electricity. 🎉':'Not quite. Think about what makes things react, and try again!';
+  m.style.color=ok?'#0b6b62':'#b3213a';
+});
+</script>
+</body>
+</html>
